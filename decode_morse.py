@@ -10,7 +10,7 @@ import os
 import sys
 import datetime
 import pandas as pd
-from config import file_path, dict_morse
+from config import file_path, file_name, dict_morse
 
 def decode_morse(message):
     '''
@@ -78,11 +78,12 @@ def save_clear_message_csv_hdr(clear_message):
 
     Output:
     file: Arquivo CSV com nome configurado no config.py, contendo a mensagem em texto claro e timestamp da gravação.
-    '''      
+    '''
     now = datetime.datetime.now()
     df = pd.DataFrame([[clear_message, now]], columns=["mensagem", "datetime"])
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
     hdr = not os.path.exists(file_path)
-    df.to_csv(file_path, mode ="a", index = False, header=hdr)
+    df.to_csv(file_path + file_name, mode ="a", index = False, header=hdr)
 
 
 
