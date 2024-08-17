@@ -82,7 +82,7 @@ def save_clear_message_csv_hdr(clear_message):
     now = datetime.datetime.now()
     df = pd.DataFrame([[clear_message, now]], columns=["mensagem", "datetime"])
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
-    hdr = not os.path.exists(file_path)
+    hdr = not os.path.exists(file_path + file_name)
     df.to_csv(file_path + file_name, mode ="a", index = False, header=hdr)
 
 
